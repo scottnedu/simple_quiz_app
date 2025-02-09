@@ -10,7 +10,7 @@ This is a simple quiz app project built using HTML, CSS, and JavaScript. The app
 - Quiz questions: The app includes a set of pre-defined quiz questions.
 - Score tracking: The app tracks the user's score and displays it at the end of the quiz.
 - Result display: The app displays a congratulatory message or a failure message based on the user's score.
-- If the user passes the quiz, the app displays a congratulations message
+- If the user passes the quiz, the app displays a congratulations message  and tells you to close the quiz.
 - If the user fails the quiz, the app displays a failure message with a retake Quiz button which the user can click and it will redirect the user back to the questions.
   
  # Technical Details
