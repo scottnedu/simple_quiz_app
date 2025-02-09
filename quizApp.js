@@ -149,13 +149,13 @@ class Quiz {
        
         if (this.score / questions.length > 0.8) {
             this.finalScore.innerHTML += `<br>Congratulations, you aced!`;
-            this.restartButton.style.display = 'none';
-            this.closeButton();
+            this.restartButton.style.display = 'block';
+            this.restartButton.innerHTML = 'Retake Quiz';
 
           } else if (this.score / questions.length > 0.4 && this.score / questions.length <= 0.8) {
             this.finalScore.innerHTML += `<br>Good result!`;
-            this.restartButton.style.display = 'none';
-            this.closeButton();
+            this.restartButton.style.display = 'block';
+            this.restartButton.innerHTML = 'Retake Quiz';
             
             
           } else if (this.score / questions.length <= 0.4) {
@@ -163,17 +163,6 @@ class Quiz {
             this.restartButton.innerHTML = 'Retake Quiz';
           }
 
-    }
-
-    closeButton(){
-        const closeButton = document.createElement('button');
-        closeButton.classList.add('close-btn');
-        closeButton.innerHTML = 'Close';
-        closeButton.addEventListener('click', () => {
-                this.quizContainer.style.display = 'none';
-                this.loginScreen.style.display = 'block';
-              });
-            this.finalScore.appendChild(closeButton); 
     }
       
     resetQuizState() {
