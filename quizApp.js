@@ -1,8 +1,9 @@
+// I imported my questions from questions.js
 import { questions } from './questions.js';
 
+// I define the Quiz class and formed Constructor to initialize quiz properties and event listener
 class Quiz {
     constructor() {
-        
         this.welcomeScreen = document.getElementById('welcome-screen');
         this.quizContainer = document.getElementById('quiz-container');
         this.resultScreen = document.getElementById('results-screen');
@@ -21,13 +22,10 @@ class Quiz {
         this.loginBtn = document.getElementById('login-btn');
         this.logOutBtn = document.getElementById('log-out-btn');
 
-
-        
         this.currentQuestionIndex = 0;
         this.score = 0;
         this.userAnswers = new Array(questions.length).fill(null);
 
-        
         this.startButton.addEventListener('click', () => this.startQuiz());
         this.nextButton.addEventListener('click', () => this.handleNextButton());
         this.restartButton.addEventListener('click', () => this.restartQuiz());
@@ -161,14 +159,7 @@ class Quiz {
         this.quizContainer.style.display = 'none';
         this.resultScreen.style.display = 'block';
         this.finalScore.innerHTML = `${this.score}/${questions.length}`;
-        // if (this.score === questions.length) {
-        //     this.finalScore.innerHTML += `<br>Congratulations, you aced!`;
-        //   } else if (this.score >= questions.length - 2) {
-        //     this.finalScore.innerHTML += `<br>Good result!`;
-        //   } else if (this.score <= 1) {
-        //     this.finalScore.innerHTML += `<br>Sorry, you failed.`;
-        //   }      
-        
+       
         if (this.score === questions.length) {
             this.finalScore.innerHTML += `<br>Congratulations, you aced!`;
             this.restartButton.style.display = 'none';
