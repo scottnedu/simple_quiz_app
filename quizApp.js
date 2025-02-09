@@ -19,6 +19,7 @@ class Quiz {
         this.loginForm = document.getElementById('login-form');
         this.usernameInput = document.getElementById('username');
         this.loginBtn = document.getElementById('login-btn');
+        this.logOutBtn = document.getElementById('log-out-btn');
 
 
         
@@ -45,6 +46,16 @@ class Quiz {
         }
       }
 
+      logOut() {
+        this.loginScreen.style.display = 'block';
+        this.resultScreen.style.display = 'none';
+        this.score = 0;
+        this.currentQuestion = 0;
+         this.quizContainer.style.display = 'none'
+         this.startQuiz(false)
+      }
+      
+
       displayWelcomeMessage(username) {
         const welcomeMessage = document.querySelector('.instructions');
         welcomeMessage.innerHTML = `Welcome, ${username}! Test your general knowledge with our quiz.`;
@@ -60,6 +71,8 @@ class Quiz {
         this.userAnswers = new Array(questions.length).fill(null);
         this.showQuestion();
     }
+
+      
 
     showQuestion() {
         this.resetState();
@@ -148,13 +161,36 @@ class Quiz {
         this.quizContainer.style.display = 'none';
         this.resultScreen.style.display = 'block';
         this.finalScore.innerHTML = `${this.score}/${questions.length}`;
+        // if (this.score === questions.length) {
+        //     this.finalScore.innerHTML += `<br>Congratulations, you aced!`;
+        //   } else if (this.score >= questions.length - 2) {
+        //     this.finalScore.innerHTML += `<br>Good result!`;
+        //   } else if (this.score <= 1) {
+        //     this.finalScore.innerHTML += `<br>Sorry, you failed.`;
+        //   }      
+        
         if (this.score === questions.length) {
             this.finalScore.innerHTML += `<br>Congratulations, you aced!`;
+            this.restartButton.style.display = 'none';
+            this.logOutBtn.style.display = 'block';
+            this.logOutBtn.addEventListener('click', () => {
+              this.logOut();
+              
+            });
           } else if (this.score >= questions.length - 2) {
             this.finalScore.innerHTML += `<br>Good result!`;
+            this.logOutBtn.style.display = 'block';
+            this.logOutBtn.addEventListener('click', () => {
+              this.logOut();
+              this.restartButton.style.display = 'none';
+
+            });
           } else if (this.score <= 1) {
-            this.finalScore.innerHTML += `<br>Sorry, you failed.`;
-          }        
+            this.finalScore.innerHTML += `<br>Sorry, you failed. Please retake the quiz.`;
+            this.logOutBtn.style.display = 'none';
+            this.restartButton.innerHTML = 'Retake Quiz';
+          }
+        
 
     }
 

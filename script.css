@@ -207,4 +207,17 @@ body {
     border-radius: 4px;
     cursor: pointer;
   }
+
+ 
+  #log-out-btn {
+    background-color: #001e4d;
+    color: #fff;
+    padding: 10px 30px;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px
+  }
+  
+  
   
