@@ -45,6 +45,16 @@ export const questions = [
             {text: 'Tinubu', correct: true},
             {text: 'Atiku', correct: false},
         ]
+    },
+
+    {
+        question: 'Who is the president of USA',
+        answers: [
+            {text: 'Barrack Obama', correct: false},
+            {text: 'Hillary Clinton', correct: false},
+            {text: 'Joe Biden', correct: false},
+            {text: 'Donald Trump', correct: true},
+        ]
     }
    
 ];

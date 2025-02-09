@@ -20,7 +20,6 @@ class Quiz {
         this.loginForm = document.getElementById('login-form');
         this.usernameInput = document.getElementById('username');
         this.loginBtn = document.getElementById('login-btn');
-        this.logOutBtn = document.getElementById('log-out-btn');
 
         this.currentQuestionIndex = 0;
         this.score = 0;
@@ -44,21 +43,11 @@ class Quiz {
         }
       }
 
-      logOut() {
-        this.loginScreen.style.display = 'block';
-        this.resultScreen.style.display = 'none';
-        this.score = 0;
-        this.currentQuestion = 0;
-         this.quizContainer.style.display = 'none'
-         this.startQuiz(false)
-      }
-      
 
       displayWelcomeMessage(username) {
         const welcomeMessage = document.querySelector('.instructions');
         welcomeMessage.innerHTML = `Welcome, ${username}! Test your general knowledge with our quiz.`;
       }
-      
       
 
     startQuiz() {
@@ -69,8 +58,6 @@ class Quiz {
         this.userAnswers = new Array(questions.length).fill(null);
         this.showQuestion();
     }
-
-      
 
     showQuestion() {
         this.resetState();
@@ -160,41 +147,49 @@ class Quiz {
         this.resultScreen.style.display = 'block';
         this.finalScore.innerHTML = `${this.score}/${questions.length}`;
        
-        if (this.score === questions.length) {
+        if (this.score / questions.length > 0.8) {
             this.finalScore.innerHTML += `<br>Congratulations, you aced!`;
             this.restartButton.style.display = 'none';
-            this.logOutBtn.style.display = 'block';
-            this.logOutBtn.addEventListener('click', () => {
-              this.logOut();
-              
-            });
-          } else if (this.score >= questions.length - 2) {
-            this.finalScore.innerHTML += `<br>Good result!`;
-            this.logOutBtn.style.display = 'block';
-            this.logOutBtn.addEventListener('click', () => {
-              this.logOut();
-              this.restartButton.style.display = 'none';
+            this.closeButton();
 
-            });
-          } else if (this.score <= 1) {
+          } else if (this.score / questions.length > 0.4 && this.score / questions.length <= 0.8) {
+            this.finalScore.innerHTML += `<br>Good result!`;
+            this.restartButton.style.display = 'none';
+            this.closeButton();
+            
+            
+          } else if (this.score / questions.length <= 0.4) {
             this.finalScore.innerHTML += `<br>Sorry, you failed. Please retake the quiz.`;
-            this.logOutBtn.style.display = 'none';
             this.restartButton.innerHTML = 'Retake Quiz';
           }
-        
 
     }
 
-    restartQuiz() {
-        this.resultScreen.style.display = 'none';
+    closeButton(){
+        const closeButton = document.createElement('button');
+        closeButton.classList.add('close-btn');
+        closeButton.innerHTML = 'Close';
+        closeButton.addEventListener('click', () => {
+                this.quizContainer.style.display = 'none';
+                this.loginScreen.style.display = 'block';
+              });
+            this.finalScore.appendChild(closeButton); 
+    }
+      
+    resetQuizState() {
         this.score = 0;
         this.currentQuestionIndex = 0;
         this.userAnswers = new Array(questions.length).fill(null);
         this.currentScore.innerHTML = '0';
+        this.progressBar.style.width = '0%';
+      }
+      
+    restartQuiz() {
+        this.resultScreen.style.display = 'none';
+        this.resetQuizState();
         this.startQuiz();
     }
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
     new Quiz();

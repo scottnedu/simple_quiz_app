@@ -209,15 +209,22 @@ body {
   }
 
  
-  #log-out-btn {
-    background-color: #001e4d;
+  .close-btn {
+    background: #001e4d;
     color: #fff;
     padding: 10px 30px;
     border: 0;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 10px
+    display: flex;
+    justify-content: center;
+    width: 150px;
+    font-weight: 500;
+    font-size: 15px;
+    margin-top: 20px;
+   align-items: center;
   }
+  
   
   
   
