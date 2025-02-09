@@ -87,37 +87,29 @@ class Quiz {
             this.answerButtons.removeChild(this.answerButtons.firstChild);
         }
     }
-
+    
     selectAnswer(e) {
         const selectedBtn = e.target;
         const isCorrect = selectedBtn.dataset.correct === "true";
-        
-        if(isCorrect) {
-            selectedBtn.classList.add('correct');
-            this.score++;
-        } else {
-            selectedBtn.classList.add('incorrect');
-        }
-
         Array.from(this.answerButtons.children).forEach(button => {
-            if(button.dataset.correct === "true") {
-                button.classList.add('correct');
-            }
-            button.disabled = true;
+          button.classList.remove('correct', 'incorrect');
         });
-
         
-        this.userAnswers[this.currentQuestionIndex] = {
-            button: selectedBtn.innerHTML,
-            isCorrect: isCorrect
-        };
-
-       
+        if (isCorrect) {
+          selectedBtn.classList.add('correct');
+          this.score++;
+        } else {
+          selectedBtn.classList.add('incorrect');
+        }
         this.currentScore.innerHTML = this.score;
+        Array.from(this.answerButtons.children).forEach(button => {
+          button.disabled = true;
+        });
+        
         this.nextButton.style.display = 'block';
         this.updateNavigationButtons();
-    }
-
+      }
+      
     handleNextButton() {
         this.currentQuestionIndex++;
         if(this.currentQuestionIndex < questions.length) {
@@ -159,7 +151,7 @@ class Quiz {
             
             
           } else if (this.score / questions.length <= 0.4) {
-            this.finalScore.innerHTML += `<br>Sorry, you failed. Please retake the quiz.`;
+            this.finalScore.innerHTML += `<br>Sorry, you failed.`;
             this.restartButton.innerHTML = 'Retake Quiz';
           }
 
