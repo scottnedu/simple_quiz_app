@@ -15,6 +15,11 @@ class Quiz {
         this.finalScore = document.getElementById('final-score');
         this.startButton = document.getElementById('start-btn');
         this.restartButton = document.getElementById('restart-btn');
+        this.loginScreen = document.getElementById('login-screen');
+        this.loginForm = document.getElementById('login-form');
+        this.usernameInput = document.getElementById('username');
+        this.loginBtn = document.getElementById('login-btn');
+
 
         
         this.currentQuestionIndex = 0;
@@ -25,7 +30,27 @@ class Quiz {
         this.startButton.addEventListener('click', () => this.startQuiz());
         this.nextButton.addEventListener('click', () => this.handleNextButton());
         this.restartButton.addEventListener('click', () => this.restartQuiz());
+        this.loginBtn.addEventListener('click', (e) => this.handleLogin(e));
+
     }
+
+    handleLogin(e) {
+        e.preventDefault();
+        const username = this.usernameInput.value.trim();
+        if (username) {
+          this.loginScreen.style.display = 'none';
+          this.welcomeScreen.style.display = 'block';
+          this.displayWelcomeMessage(username);
+          this.startButton.style.display = 'block';
+        }
+      }
+
+      displayWelcomeMessage(username) {
+        const welcomeMessage = document.querySelector('.instructions');
+        welcomeMessage.innerHTML = `Welcome, ${username}! Test your general knowledge with our quiz.`;
+      }
+      
+      
 
     startQuiz() {
         this.welcomeScreen.style.display = 'none';
@@ -123,6 +148,14 @@ class Quiz {
         this.quizContainer.style.display = 'none';
         this.resultScreen.style.display = 'block';
         this.finalScore.innerHTML = `${this.score}/${questions.length}`;
+        if (this.score === questions.length) {
+            this.finalScore.innerHTML += `<br>Congratulations, you aced!`;
+          } else if (this.score >= questions.length - 2) {
+            this.finalScore.innerHTML += `<br>Good result!`;
+          } else if (this.score <= 1) {
+            this.finalScore.innerHTML += `<br>Sorry, you failed.`;
+          }        
+
     }
 
     restartQuiz() {

@@ -1,20 +1,20 @@
 export const questions = [
     {
-        question: "What is the capital of France?",
+        question: "What ancient civilization built the city of Petra, which was carved into the sandstone cliffs of modern-day Jordan?",
         answers: [
-            { text: "London", correct: false },
-            { text: "Paris", correct: true },
-            { text: "Berlin", correct: false },
-            { text: "Madrid", correct: false }
+            { text: "Egyptian", correct: false },
+            { text: "Greek", correct: false },
+            { text: "Romans", correct: false },
+            { text: "Nabataeans", correct: true }
         ]
     },
     {
-        question: "Which planet is known as the Red Planet?",
+        question: "What is the term for the phenomenon where a liquid flows upwards against gravity, without the need for any external energy source?",
         answers: [
-            { text: "Jupiter", correct: false },
-            { text: "Venus", correct: false },
-            { text: "Mars", correct: true },
-            { text: "Saturn", correct: false }
+            { text: "Capillary Action", correct: true },
+            { text: "Osmosis", correct: false },
+            { text: "Diffusion", correct: false },
+            { text: "Buoyancy", correct: false }
         ]
     },
     {

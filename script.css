@@ -37,6 +37,10 @@ body {
     line-height: 1.5;
 }
 
+.start-btn{
+    display: none;
+}
+
 .start-btn, .restart-btn {
     background: #001e4d;
     color: #fff;
@@ -177,3 +181,30 @@ body {
     margin: 20px 0;
     font-weight: bold;
 }
+
+.login-screen {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  #login-form {
+    margin-top: 20px;
+  }
+  
+  #username {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 50%;
+    margin-bottom: 10px;
+  }
+  
+  #login-btn {
+    background: #001e4d;
+    color: #fff;
+    padding: 10px 30px;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
